@@ -59,8 +59,10 @@
             <input type="date" name="date" id="checkOutDate" placeholder="date" th:field="*{check_out}" th:value="${booking.check_out}">
 <!--            <div class="error"></div>-->
         </div>
-        <button type="submit">Book Now</button>
+        <button id="btn" type="button" onclick="confirm()">Book Now</button>
     </form>
+    <script th:src="@{/js/Booking.js}"></script>
+
 </div>
 </body>
 </html>

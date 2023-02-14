@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>$Title$</title>
+</head>
+<body>
+<form th:method="post" th:action="@{/admin/save/room}" th:object="${gallery}" enctype="multipart/form-data">
+    <div class="input-control">
+        <input type="file" name="photo" accept="image/*" id="photo" class="form-control-file" required>
+    </div>
+    <div class="input-control">
+        <label for="Seater">Name</label>
+        <input id="name" name="name" type="text" required th:field="*{name}">
+    </div>
+    <div class="input-control">
+    <label for="Seater">Seater</label>
+    <input id="Seater" name="seater" type="text" th:field="*{seater}">
+    </div>
+    <div class="input-control">
+        <label for="price">Price</label>
+        <input id="price" name="price" type="number" th:field="*{price}">
+    </div>
+    <div class="input-control">
+        <label for="Description">Description</label>
+        <input id="Description" name="description" type="text" th:field="*{description}">
+    </div>
+    <button type="submit">Submit</button>
+</form>
+</body>
+</html>

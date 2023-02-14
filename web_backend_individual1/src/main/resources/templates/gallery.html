@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/gallery.css}">
+    <script src="https://kit.fontawesome.com/dbed6b6114.js" crossorigin="anonymous"></script>
+<!--    <link rel = "icon" th:href = "images/logo.png" type = "image/png">-->
+    <title>Hostel Rooms</title>
+</head>
+<body>
+<section class = "rooms sec-width" id = "rooms">
+    <div class = "title">
+        <h2>rooms</h2>
+    </div>
+    <div class = "rooms-container">
+        <!-- single room -->
+        <article class = "room">
+            <div class = "room-image">
+                <img th:src = "@{/images/home1.jpg}" alt = "room image">
+            </div>
+            <div class = "room-text">
+                <h3>Luxury Rooms</h3>
+                <ul>
+                    <li>
+                        <i class = "fas fa-arrow-alt-circle-right"></i>
+                        Lorem ipsum dolor sit amet.
+                    </li>
+                    <li>
+                        <i class = "fas fa-arrow-alt-circle-right"></i>
+                        Lorem ipsum dolor sit amet.
+                    </li>
+                    <li>
+                        <i class = "fas fa-arrow-alt-circle-right"></i>
+                        Lorem ipsum dolor sit amet.
+                    </li>
+                </ul>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus exercitationem repellendus maxime ullam tempore architecto provident unde expedita quam beatae, dolore eligendi molestias sint tenetur incidunt voluptas. Unde corporis qui iusto vitae. Aut nesciunt id iste, cum esse commodi nemo?</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla corporis quasi officiis cumque, fugiat nostrum sunt, tempora animi dicta laborum beatae ratione doloremque. Delectus odio sit eius labore, atque quo?</p>
+                <p class = "rate">
+                    <span>$99.00 /</span> Per Night
+                </p>
+                <button type = "button" class = "btn">book now</button>
+            </div>
+        </article>
+        <!-- end of single room -->
+        <!-- single room -->
+        <article class = "room" th:each="gallerys:${gallery}">
+            <div class = "room-image">
+                <img th:src="'data:image/png;base64,'+${gallerys.imageBase64}" alt = "room image">
+            </div>
+            <div class = "room-text">
+                <h3 th:text="${gallerys.name}"></h3>
+                <ul>
+                    <li>
+                        <i class = "fas fa-arrow-alt-circle-right"></i>
+                        <p th:text="${gallerys.seater}"></p>
+                    </li>
+                </ul>
+                <p th:text="${gallerys.description}">Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus exercitationem repellendus maxime ullam tempore architecto provident unde expedita quam beatae, dolore eligendi molestias sint tenetur incidunt voluptas. Unde corporis qui iusto vitae. Aut nesciunt id iste, cum esse commodi nemo?</p>
+                <p class = "rate">
+                    <span th:text="${gallerys.price}"></span> Per Night
+                </p>
+                <button type = "button" class = "btn">book now</button>
+            </div>
+        </article>
+        <!-- end of single room -->
+        <!-- single room -->
+        <article class = "room">
+            <div class = "room-image">
+                <img th:src = "@{/images/home3.jpeg}" alt = "room image">
+            </div>
+            <div class = "room-text">
+                <h3>Luxury Rooms</h3>
+                <ul>
+                    <li>
+                        <i class = "fas fa-arrow-alt-circle-right"></i>
+                        Lorem ipsum dolor sit amet.
+                    </li>
+                    <li>
+                        <i class = "fas fa-arrow-alt-circle-right"></i>
+                        Lorem ipsum dolor sit amet.
+                    </li>
+                    <li>
+                        <i class = "fas fa-arrow-alt-circle-right"></i>
+                        Lorem ipsum dolor sit amet.
+                    </li>
+                </ul>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus exercitationem repellendus maxime ullam tempore architecto provident unde expedita quam beatae, dolore eligendi molestias sint tenetur incidunt voluptas. Unde corporis qui iusto vitae. Aut nesciunt id iste, cum esse commodi nemo?</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla corporis quasi officiis cumque, fugiat nostrum sunt, tempora animi dicta laborum beatae ratione doloremque. Delectus odio sit eius labore, atque quo?</p>
+                <p class = "rate">
+                    <span>$99.00 /</span> Per Night
+                </p>
+                <button type = "button" class = "btn">book now</button>
+            </div>
+        </article>
+        <!-- end of single room -->
+    </div>
+</section>
+</body>
+</html>

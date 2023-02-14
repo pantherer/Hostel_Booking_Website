@@ -22,7 +22,7 @@ public class User implements UserDetails {
     @GeneratedValue(generator = "hms_user_seq_gen", strategy = GenerationType.SEQUENCE)
     private Integer id;
 
-    @Column(name = "FullName")
+    @Column(name = "Full_name")
     private String fullname;
 
     @Column(name = "Phone")
@@ -36,6 +36,8 @@ public class User implements UserDetails {
 
     @Column(name = "Password")
     private String password;
+    @Column(name = "OTP")
+    private String OTP;
 
 
     @Override

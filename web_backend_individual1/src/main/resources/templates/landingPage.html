@@ -19,7 +19,7 @@
 
     <div class="flex">
         <a href="#home" class="logo">TipTop</a>
-        <a href="#availability" class="btn">check availability</a>
+        <a th:href="@{/booking/add}" class="btn">Book Now</a>
         <div id="menu-btn" class="fas fa-bars"></div>
     </div>
 
@@ -45,7 +45,7 @@
                 <img th:src="@{/images/home1.jpg}" alt="">
                 <div class="flex">
                     <h3>luxurious rooms</h3>
-                    <a href="#availability" class="btn">check availability</a>
+                    <a th:href="@{/booking/add}" class="btn">Book Now</a>
                 </div>
             </div>
 
@@ -53,7 +53,7 @@
                 <img th:src="@{/images/home4.jpeg}" alt="">
                 <div class="flex">
                     <h3>foods and drinks</h3>
-                    <a href="#reservation" class="btn">make a reservation</a>
+                    <a th:href="@{/booking/add}" class="btn">Make a reservation</a>
                 </div>
             </div>
 
@@ -277,23 +277,31 @@
             <img th:src="@{/images/gallery5.jpg}" class="swiper-slide" alt="">
             <img th:src="@{/images/gallery6.jpg}" class="swiper-slide" alt="">
         </div>
-        <div class="swiper-pagination"></div>
+
+<!--        <div class="resources-category-image" style="height: 300px; width: 300px" th:each="image:${imagelist}">-->
+<!--            <img th:src="'data:image/png;base64,'+${image.imageBase64}" width="100%" height="100%"/>-->
+<!--            <h2>Name</h2>-->
+<!--            <h3>Description</h3>-->
+<!--        </div>-->
+        <a href="#reservation" class="btn">see room details</a>
+
     </div>
 
 </section>
 
-<
+
+<div class="swiper-pagination"></div>
 
 <section class="contact" id="contact">
 
     <div class="row">
 
-        <form action="" method="post">
+        <form th:method="post" th:action="@{/landing/saveMessage}" th:object="${message}">
             <h3>send us message</h3>
-            <input type="text" name="name" required maxlength="50" placeholder="enter your name" class="box">
-            <input type="email" name="email" required maxlength="50" placeholder="enter your email" class="box">
-            <input type="number" name="number" required maxlength="10" min="0" max="9999999999" placeholder="enter your number" class="box">
-            <textarea name="msg" class="box" required maxlength="1000" placeholder="enter your message" cols="30" rows="10"></textarea>
+            <input type="text" name="name" maxlength="50" placeholder="enter your name" class="box" required th:field="*{name}">
+            <input type="email" name="email" required maxlength="50" placeholder="enter your email" class="box" th:field="*{email}">
+            <input name="number" required  placeholder="enter your number" class="box" th:field="*{number}">
+            <textarea name="msg" class="box" required maxlength="1000" placeholder="enter your message" cols="30" rows="10" th:field="*{msg}"></textarea>
             <input type="submit" value="send message" name="send" class="btn">
         </form>
 
@@ -324,6 +332,13 @@
     </div>
 
 </section>
+<!--<div class="item" th:each="gallerys:${gallery}">-->
+<!--    <img class="item-pic" th:src="'data:image/png;base64,'+${gallerys.imageBase64}" height="200" width="200"/>-->
+<!--    <p th:text="${gallerys.name}"></p>-->
+<!--    <p th:text="${gallerys.seater}"></p>-->
+<!--    <p th:text="${gallerys.description}"></p>-->
+<!--    <p th:text="${gallerys.price}"></p>-->
+<!--</div>-->
 
 
 
@@ -334,8 +349,8 @@
         <div class="swiper-wrapper">
             <div class="swiper-slide box">
                 <img th:src="@{/images/pic-1.png}" alt="">
-                <h3>Amul Bashyal</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates blanditiis optio dignissimos eaque aliquid explicabo.</p>
+                <h3 th:text="${name}"></h3>
+                <p th:text="${msg}">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates blanditiis optio dignissimos eaque aliquid explicabo.</p>
             </div>
             <div class="swiper-slide box">
                 <img th:src="@{/images/pic-2.png}" alt="">

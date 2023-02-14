@@ -17,6 +17,7 @@ public class UserPojo {
     private String address;
     private String username;
     private String password;
+    private String OTP;
     public UserPojo(User user){
         this.id = user.getId();
         this.fullname=user.getFullname();
@@ -24,5 +25,6 @@ public class UserPojo {
         this.address = user.getAddress();
         this.username=user.getUsername();
         this.password=user.getPassword();
+        this.OTP = user.getOTP();
     }
 }

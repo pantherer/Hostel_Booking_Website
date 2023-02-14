@@ -2,6 +2,7 @@ package com.system.web_backend_individual1.Controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -13,9 +14,13 @@ public class DashboardController {
     public String GetDashboard(){
         return "dashboard";
     }
-    @GetMapping("/landing")
-    public String GetLanding(){
-        return "landingPage";
+    @GetMapping("/add_photo")
+    public String getPhoto() {
+        return "galleryForm";
     }
+//    @GetMapping("/landing")
+//    public String GetLanding(Model model){
+//        return "landingPage";
+//    }
 
 }

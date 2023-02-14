@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <title>Gallery</title>
+</head>
+<body>
+<div class="item" th:each="gallerys:${gallery}">
+    <img class="item-pic" th:src="'data:image/png;base64,'+${gallerys.imageBase64}" height="200" width="200"/>
+    <p th:text="${gallerys.name}"></p>
+    <p th:text="${gallerys.seater}"></p>
+    <p th:text="${gallerys.description}"></p>
+    <p th:text="${gallerys.price}"></p>
+</div>
+</body>
+</html>

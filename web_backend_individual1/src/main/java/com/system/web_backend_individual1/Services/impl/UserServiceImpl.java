@@ -13,9 +13,11 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.freemarker.FreeMarkerTemplateUtils;
 
@@ -23,6 +25,8 @@ import org.springframework.ui.freemarker.FreeMarkerTemplateUtils;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
+import java.util.Random;
 
 @Service
 @RequiredArgsConstructor
@@ -91,6 +95,46 @@ public class UserServiceImpl implements UserService {
         user.setAddress(userPojo.getAddress());
         userRepo.save(user);
         return "created";
+    }
+    @Override
+    public void processPasswordResetRequest(String username) {
+        Optional<User> optionalUser = userRepo.findByUsername(username);
+        if (optionalUser.isPresent()) {
+            User user = optionalUser.get();
+            String OTP = generateOTP();
+            user.setOTP(OTP);
+            userRepo.save(user);
+            sendOTPEmail(username, OTP);
+        }
+    }
+
+    @Override
+    public void resetPassword(String username, String OTP, String password) {
+        User user = userRepo.findByUsernameAndOTP(username, OTP);
+        if (user != null) {
+            if (password == null) {
+                throw new IllegalArgumentException("Password cannot be null");
+            }
+            BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+            String encodedPassword = passwordEncoder.encode(password);
+            user.setPassword(encodedPassword);
+            user.setOTP(null);
+            userRepo.save(user);
+        } else {
+            throw new RuntimeException();
+        }
+    }
+
+    private String generateOTP() {
+        return String.format("%06d", new Random().nextInt(1000000));
+    }
+
+    private void sendOTPEmail(String username, String OTP) {
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setTo(username);
+        message.setSubject("Password Reset OTP");
+        message.setText("Your OTP for resetting your password is: " + OTP);
+        getJavaMailSender.send(message);
     }
 
 }

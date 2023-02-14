@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.io.File;
 import java.io.IOException;
@@ -60,19 +61,34 @@ public class UserController {
         userService.save_user(userpojo);
         return "redirect:/user/profile";
     }
-    public String getImageBase64(String fileName) {
-        String filePath = System.getProperty("user.dir") + "/Gallery/";
-        File file = new File(filePath + fileName);
-        byte[] bytes = new byte[0];
-        try {
-            bytes = Files.readAllBytes(file.toPath());
-        } catch (IOException e) {
-            e.printStackTrace();
-            return null;
-        }
-        String base64 = Base64.getEncoder().encodeToString(bytes);
-        return base64;
+    @GetMapping("/request-password-reset")
+    public String requestPasswordReset() {
+        return "forgotPassword";
     }
+
+    @PostMapping("/request-password-reset")
+    public String processPasswordResetRequest(@RequestParam("username") String username, Model model) {
+        userService.processPasswordResetRequest(username);
+        model.addAttribute("message", "A password reset OTP has been sent to your email. Please check your inbox!!!");
+        return "forgotPasswordOTP";
+    }
+
+    @GetMapping("/reset-password")
+    public String resetPassword(@RequestParam("username") String username, Model model) {
+        model.addAttribute("username", username);
+        return "forgotPasswordOTP";
+    }
+
+    @PostMapping("/reset-password")
+    public String processPasswordReset(@RequestParam("username") String username,
+                                       @RequestParam(required=false, name = "OTP") String OTP,
+                                       @RequestParam("password") String password,
+                                       Model model) {
+        userService.resetPassword(username, OTP, password);
+        model.addAttribute("message", "Your password has been reset successfully.");
+        return "forgotPasswordOTP";
+    }
+
 }
 
 

@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" th:href="@{/registration.css}">
+    <link rel="stylesheet" th:href="@{/css/registration.css}">
 <!--    <script defer src="../../../../../../../bookingForm%20Js/booking.js"></script>-->
 </head>
 <body>
@@ -41,10 +41,11 @@
                 <div class="error"></div>
             </div>
            
-            <button type="submit">Register</button>
+            <button type="button" onclick="confirmReg()">Register</button>
 
             <h4>Already have an account?<a href="@{/css/login.html}"> login here</a></h4>
         </form>
     </div>
+<script th:src="@{/js/registration}"></script>
 </body>
 </html>

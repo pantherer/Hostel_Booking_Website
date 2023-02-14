@@ -6,6 +6,8 @@ import com.system.web_backend_individual1.Services.CustomerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class CustomerServiceImpl implements CustomerService {
@@ -20,5 +22,10 @@ public class CustomerServiceImpl implements CustomerService {
        customer.setCheck_out(customerPojo.getCheck_out());
        customerRepo.save(customer);
        return "created";
+    }
+
+    @Override
+    public List<Customer> fetchAll() {
+        return this.customerRepo.findAll();
     }
 }

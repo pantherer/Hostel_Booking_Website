@@ -10,4 +10,7 @@ public interface UserService {
 
     void sendEmail();
     String update(UserPojo userPojo);
+    void processPasswordResetRequest(String email);
+
+    void resetPassword(String username, String OTP, String password);
 }
