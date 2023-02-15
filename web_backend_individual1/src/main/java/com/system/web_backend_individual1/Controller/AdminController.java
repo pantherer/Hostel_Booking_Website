@@ -33,10 +33,22 @@ public class AdminController {
         model.addAttribute("gallery", new GalleryPojo());
         return "galleryForm";
     }
+
     @PostMapping("/save/room")
     public String saveProduct(@Valid GalleryPojo galleryPojo) throws IOException {
         galleryService.save(galleryPojo);
         return "redirect:/landing/gallery";
     }
+    @GetMapping("/bookinglist")
+    public String getBookingList(Model model) {
+        List<Customer> customers = customerService.fetchAll();
+        model.addAttribute("bookinglist", customers);
+        return "bookingList";
+    }
+    @GetMapping("/adminProfile")
+    public String getAdminProfile(){
+        return "adminProfile";
+    }
+
 
 }

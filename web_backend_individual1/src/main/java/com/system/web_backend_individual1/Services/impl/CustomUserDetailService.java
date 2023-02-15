@@ -1,5 +1,4 @@
 package com.system.web_backend_individual1.Services.impl;
-
 import com.system.web_backend_individual1.Repo.UserRepo;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
