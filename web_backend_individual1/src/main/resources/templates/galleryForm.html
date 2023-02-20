@@ -47,11 +47,11 @@
     <div class="wrapper-right">
         <form th:method="post" th:action="@{/admin/save/room}" th:object="${gallery}" enctype="multipart/form-data">
             <h2 class="h2">Enter Room</h2>
-            <input class="email-box" type="file" name="photo" accept="image/*" id="photo" required />
-            <input class="email-box" name="name" type="text" placeholder="Enter Room Number" required autofocus th:field="*{name}"/>
-            <input class="email-box" name="seater" type="text" placeholder="Enter Seater" required autofocus th:field="*{seater}"/>
-            <input class="email-box" name="price" type="number" placeholder="Enter Price" required autofocus th:field="*{price}"/>
-            <input class="email-box"  name="description" type="text" placeholder="Enter Description" required autofocus th:field="*{description}"/>
+            <input class="email-box" type="file" name="photo" accept="image/*" id="photo" required th:value="${gallery.getPhoto()}"/>
+            <input class="email-box" name="name" type="text" placeholder="Enter Room Number" required th:field="*{name}" th:value="${gallery.name}"/>
+            <input class="email-box" name="seater" type="text" placeholder="Enter Seater" required th:field="*{seater}" th:value="${gallery.seater}"/>
+            <input class="email-box" name="price" type="number" placeholder="Enter Price" required th:field="*{price}" th:value="${gallery.price}"/>
+            <input class="email-box"  name="description" type="text" placeholder="Enter Description" required th:field="*{description}" th:value="${gallery.description}"/>
             <button class="forgot-button" type="submit">Submit</button>
             <h3 class="h3-2">Back to Dashboard
                 <a class="a-2" th:href="@{/admin/dashboard}">Click Here!</a>

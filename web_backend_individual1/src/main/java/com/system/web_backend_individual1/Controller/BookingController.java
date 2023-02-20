@@ -64,7 +64,7 @@ public class BookingController {
     public String SaveCustomer(@Valid CustomerPojo customerPojo){
 //        System.out.println("inside save customer");
         customerService.save_customer(customerPojo);
-        return "dashboard";
+        return "redirect:/landing/view";
     }
 }
 

@@ -64,6 +64,19 @@ section{
     margin-top: 1rem;
     background-color: var(--main-color);
 }
+.fa fa-user{
+    display: inline-block;
+    cursor: pointer;
+    padding: 1rem 3rem;
+    border: var(--border);
+    font-size: 1.8rem;
+    color: var(--sub-color);
+    text-align: center;
+    text-transform: capitalize;
+    transition: .2s linear;
+    margin-top: 1rem;
+    background-color: var(--main-color);
+}
 
 .btn:hover{
     border-radius: 5rem;

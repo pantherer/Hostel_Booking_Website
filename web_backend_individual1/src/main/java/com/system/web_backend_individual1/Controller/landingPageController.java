@@ -9,6 +9,8 @@ import com.system.web_backend_individual1.Services.GalleryService;
 import com.system.web_backend_individual1.Services.MessageService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,7 +20,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.security.Principal;
 import java.util.Base64;
+import java.util.Collection;
 import java.util.List;
 
 @Controller
@@ -28,7 +32,15 @@ public class landingPageController {
     private final MessageService messageService;
     private final GalleryService galleryService;
     @GetMapping("/view")
-    public String GetLandingPage(Model model) {
+    public String GetLandingPage(Model model, Principal principal, Authentication authentication) {
+        if (authentication!=null){
+            Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
+            for (GrantedAuthority grantedAuthority : authorities) {
+                if (grantedAuthority.getAuthority().equals("Admin")) {
+                    return "redirect:/admin/dashboard";
+                }
+            }
+        }
         model.addAttribute("message", new MessagePojo());
         return "landingPage";
     }

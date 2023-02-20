@@ -10,4 +10,8 @@ public interface GalleryService {
     List<Gallery> fetchAll();
 
     String save(GalleryPojo galleryPojo) throws IOException;
+
+    void deleteById(Integer id);
+
+    Gallery fetchById(Integer id);
 }

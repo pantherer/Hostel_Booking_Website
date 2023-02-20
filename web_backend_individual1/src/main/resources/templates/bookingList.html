@@ -21,7 +21,7 @@
         </thead>
         <tbody>
         <tr th:each="booking:${bookinglist}">
-            <th scope="row"th:number="${booking.id}">1</th>
+            <th scope="row"th:number="${booking.id}"></th>
             <td th:text="${booking.check_in}"></td>
             <td th:text="${booking.check_out}"></td>
             <td th:text="${booking.fullname}"></td>

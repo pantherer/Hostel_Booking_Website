@@ -23,9 +23,11 @@
     padding-bottom: 25px;
     background: var(--dark);
     color: #fff;
+    height: 400px;
 }
 .room-text{
     padding: 5px 20px;
+    height: 400px;
 }
 .room-text h3{
     font-size: 24px;
@@ -51,6 +53,7 @@
 }
 .room-image{
     overflow: hidden;
+    height: 400px;
 }
 img {
     width: 100%;

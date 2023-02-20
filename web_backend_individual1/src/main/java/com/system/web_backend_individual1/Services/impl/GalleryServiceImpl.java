@@ -47,5 +47,15 @@ public class GalleryServiceImpl implements GalleryService {
         galleryRepo.save(gallery);
         return "created";
     }
+
+    @Override
+    public void deleteById(Integer id) {
+        this.galleryRepo.deleteById(id);
+    }
+
+    @Override
+    public Gallery fetchById(Integer id) {
+        return galleryRepo.findById(id).orElseThrow(()->new RuntimeException("not found"));
+    }
 }
 

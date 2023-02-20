@@ -28,4 +28,9 @@ public class CustomerServiceImpl implements CustomerService {
     public List<Customer> fetchAll() {
         return this.customerRepo.findAll();
     }
+
+    @Override
+    public void deleteById(Integer id) {
+        this.customerRepo.deleteById(id);
+    }
 }

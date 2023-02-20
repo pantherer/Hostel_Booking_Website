@@ -7,7 +7,7 @@ function confirmReg(){
     let password=document.getElementById("Password").value;
     let btn = document.getElementById("btn");
 
-    alert(fullname);
+    // alert(fullname);
     if(fullname==""){
         alert("Please enter your fullname!!")
     }else if(phone==""){

@@ -40,9 +40,9 @@
           </a>
         </li>
         <li>
-          <a href="#">
+          <a th:href="@{/admin/galleryList}">
             <i class='bx bx-user' ></i>
-            <span class="links_name">Users</span>
+            <span class="links_name">RoomList</span>
           </a>
         </li>
         <li>
@@ -76,7 +76,7 @@
           </a>
         </li>
         <li class="log_out">
-          <a href="#">
+          <a th:href="@{/logout}">
             <i class='bx bx-log-out'></i>
             <span class="links_name">Log out</span>
           </a>
@@ -276,16 +276,18 @@
             <th scope="col">Name</th>
             <th scope="col">Phonenumber</th>
             <th scope="col">roomNumber</th>
+            <th scope="col">Action</th>
           </tr>
           </thead>
           <tbody>
           <tr th:each="booking:${bookinglist}">
-            <th scope="row"th:number="${booking.id}">1</th>
+            <th scope="row" th:number="${booking.id}"></th>
             <td th:text="${booking.check_in}"></td>
             <td th:text="${booking.check_out}"></td>
             <td th:text="${booking.fullname}"></td>
             <td th:text="${booking.phone}"></td>
             <td th:text="${booking.room_type}"></td>
+            <td><a th:href="@{~/admin/deleteList/}+${booking.id}">Delete</a></td>
           </tr>
           <tr>
             <th scope="row">2</th>

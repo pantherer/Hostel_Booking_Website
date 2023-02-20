@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Booking Lists</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+<form>
+  <table class="table">
+    <thead>
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Photo</th>
+      <th scope="col">Name</th>
+      <th scope="col">Description</th>
+      <th scope="col">Seater</th>
+      <th scope="col">Price</th>
+      <th scope="col">Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="gallery:${gallery}">
+      <th scope="row"th:number="${gallery.id}"></th>
+      <td><img th:src="'data:image/png;base64,'+${gallery.imageBase64}" width="100px" height="100px"/></td>
+      <td th:text="${gallery.name}"></td>
+      <td th:text="${gallery.description}"></td>
+      <td th:text="${gallery.seater}"></td>
+      <td th:text="${gallery.price}"></td>
+      <td><a th:href="@{~/admin/editGallery/}+${gallery.id}">Edit</a> <a th:href="@{~/admin/deleteGallery/}+${gallery.id}">Delete</a></td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>01/03/2022</td>
+      <td>01/13/2022</td>
+      <td>Jacob</td>
+      <td>9867986798</td>
+      <td>203</td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td>01/13/2022</td>
+      <td>01/23/2022</td>
+      <td>Gullapad</td>
+      <td>9867987878</td>
+      <td>222</td>
+    </tr>
+    </tbody>
+  </table>
+</form>
+</body>
+</html>

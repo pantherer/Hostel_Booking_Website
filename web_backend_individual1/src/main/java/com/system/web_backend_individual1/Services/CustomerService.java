@@ -9,4 +9,6 @@ public interface CustomerService {
     String save_customer(CustomerPojo customerPojo);
 
     List<Customer> fetchAll();
+
+    void deleteById(Integer id);
 }
